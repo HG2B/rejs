@@ -4,7 +4,7 @@ import os
 import redis
 import pickle
 from typing import Optional, Dict
-from rejs import config
+import config
 import datetime
 
 class RedisPool:

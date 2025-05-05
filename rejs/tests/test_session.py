@@ -4,11 +4,13 @@ import pickle
 
 # Add the sys.path.append
 from quopri import decode
-sys.path.append('../')
+
+
+print(sys.path)
 
 user_id = "123456"
 
-from rejs.session import Session, RedisPool
+from session import Session, RedisPool
 
 # Let's create a simple test
 def test_session_creation():
