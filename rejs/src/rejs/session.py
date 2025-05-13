@@ -37,7 +37,7 @@ class Session:
             self.system_data = {}
 
     def _set_redis_system_data(self, system_data: Dict[str, str], exp: int=config.JWT_EXPIRATION):
-        redis = RedisPool().get_connection()
+        redis = RedisPool.get_connection()
         if self.user_id:
             # Serialize the system data
             serialized_data = pickle.dumps(system_data)
@@ -47,7 +47,7 @@ class Session:
             raise ValueError("User ID is not set")
 
     def _get_redis_system_data(self):
-        redis = RedisPool().get_connection()
+        redis = RedisPool.get_connection()
         if self.user_id:
             # Deserialize the system data
             serialized_data = redis.get(f"session:{self.session_id}:{self.user_id}")
