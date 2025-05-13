@@ -92,8 +92,12 @@ class Session:
         self._set_redis_system_data(system_data, exp)
         return True
 
-    def nicegui_save(self):
-        app.storage.client['token'] = self.get_jwt_string()
+    def nicegui_save(self, request=None):
+        if request:
+            request.scope["headers"][b"Authorization"] = f"Bearer {self.get_jwt_string()}"
+        else:
+            app.storage.client['token'] = self.get_jwt_string()
+        return request
 
     @staticmethod
     def from_nicegui():
