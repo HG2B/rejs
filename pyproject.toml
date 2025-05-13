@@ -1,0 +1,12 @@
+[project]
+name = "hg2b"
+version= "1.0"
+dependencies = ["rejs"]
+
+[tool.uv.sources]
+rejs = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+  "rejs"
+]
