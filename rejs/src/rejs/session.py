@@ -6,6 +6,7 @@ import pickle
 from typing import Optional, Dict
 from rejs import config
 import datetime
+from nicegui import app
 
 class RedisPool:
     '''Class for managing a pool of Redis connections.'''
@@ -91,6 +92,13 @@ class Session:
         self._set_redis_system_data(system_data, exp)
         return True
 
+    def nicegui_save(self):
+        app.storage.client['token'] = self.get_jwt_string()
+
+    @staticmethod
+    def from_nicegui(self):
+        token = app.storage.client['token']
+        return Session(token)
     def update(self, system_data: Dict[str, str]):
         # Calculate the expiration time, based on the self.expires_at
         # The idea is to not extend the expiration time. So, we want
