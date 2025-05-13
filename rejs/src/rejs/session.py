@@ -96,7 +96,7 @@ class Session:
         app.storage.client['token'] = self.get_jwt_string()
 
     @staticmethod
-    def from_nicegui(self):
+    def from_nicegui():
         token = app.storage.client['token']
         return Session(token)
     def update(self, system_data: Dict[str, str]):
