@@ -97,8 +97,10 @@ class Session:
 
     @staticmethod
     def from_nicegui():
-        token = app.storage.client['token']
-        return Session(token)
+        if 'token' in app.storage.client:
+            token = app.storage.client['token']
+            return Session(token)
+        return Session()
     def update(self, system_data: Dict[str, str]):
         # Calculate the expiration time, based on the self.expires_at
         # The idea is to not extend the expiration time. So, we want
