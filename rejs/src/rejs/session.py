@@ -102,8 +102,11 @@ class Session:
     @staticmethod
     def from_nicegui():
         if 'token' in app.storage.client:
-            token = app.storage.client['token']
-            return Session(token)
+            try:
+                token = app.storage.client['token']
+                return Session(token)
+            except KeyError:
+                print('No key `token` found!')
         return Session()
 
     def update(self, system_data: Dict[str, str]):
