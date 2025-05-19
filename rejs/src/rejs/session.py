@@ -105,6 +105,7 @@ class Session:
             token = app.storage.client['token']
             return Session(token)
         return Session()
+z
     def update(self, system_data: Dict[str, str]):
         # Calculate the expiration time, based on the self.expires_at
         # The idea is to not extend the expiration time. So, we want
