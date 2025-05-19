@@ -96,7 +96,10 @@ class Session:
         if request:
             request.scope["headers"][b"Authorization"] = f"Bearer {self.get_jwt_string()}"
         else:
-            app.storage.client['token'] = self.get_jwt_string()
+            try:
+                app.storage.client['token'] = self.get_jwt_string()
+            except KeyError:
+                print('No key `token` found!')
         return request
 
     @staticmethod
