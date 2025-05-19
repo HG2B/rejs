@@ -272,11 +272,15 @@ name = "hg2b"
 version = "1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "fastapi" },
     { name = "rejs" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "rejs", editable = "rejs" }]
+requires-dist = [
+    { name = "fastapi", specifier = ">=0.115.12" },
+    { name = "rejs", editable = "rejs" },
+]
 
 [[package]]
 name = "httpcore"
@@ -743,6 +747,7 @@ name = "rejs"
 version = "0.1.0"
 source = { editable = "rejs" }
 dependencies = [
+    { name = "fastapi" },
     { name = "nicegui" },
     { name = "pyjwt" },
     { name = "python-dotenv" },
@@ -757,6 +762,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "fastapi", specifier = ">=0.115.12" },
     { name = "nicegui", specifier = ">=2.17.0" },
     { name = "pyjwt", specifier = ">=2.10.1" },
     { name = "python-dotenv", specifier = ">=1.1.0" },

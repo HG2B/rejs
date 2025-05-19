@@ -1,7 +1,10 @@
 [project]
 name = "hg2b"
 version= "1.0"
-dependencies = ["rejs"]
+dependencies = [
+    "fastapi>=0.115.12",
+    "rejs",
+]
 
 [tool.uv.sources]
 rejs = { workspace = true }

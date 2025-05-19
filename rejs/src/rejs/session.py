@@ -7,6 +7,7 @@ from typing import Optional, Dict
 from rejs import config
 import datetime
 from nicegui import app
+from fastapi import Request
 
 class RedisPool:
     '''Class for managing a pool of Redis connections.'''
@@ -92,9 +93,11 @@ class Session:
         self._set_redis_system_data(system_data, exp)
         return True
 
-    def nicegui_save(self, request=None):
+    def nicegui_save(self, request: Request=None):
         if request:
-            request.scope["headers"][b"Authorization"] = f"Bearer {self.get_jwt_string()}"
+            headers = dict(request.scope['headers'])
+            headers[b"Authorization"] = f"Bearer {self.get_jwt_string()}"
+            request.scope['headers'] = [(k, v) for k, v in headers.items()]
         else:
             try:
                 app.storage.client['token'] = self.get_jwt_string()
